@@ -1,8 +1,10 @@
 defmodule Service.TemplaterControllerTest do
-  use Service.ConnCase
+  use ExUnit.Case
+  use Plug.Test
+  alias TemplaterController.Router
 
-  test "GET /", %{conn: conn} do
-    conn = get conn, "/"
-    assert html_response(conn, 200) =~ "Welcome to Phoenix!"
+  test "Can I get a connection(?)" do
+    response = conn(:post, "/render")
+    assert response.status == 200
   end
 end

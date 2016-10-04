@@ -22,7 +22,7 @@ defmodule Service.Router do
   scope "/api", Sevice do
     pipe_through :api
 
-    # What do I need here?
+    post "/render", TemplaterController, :render  
   end
 
   # Other scopes may use custom stacks.
