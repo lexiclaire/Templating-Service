@@ -1,6 +1,5 @@
 defmodule Service.TemplaterController do
   use Service.Web, :controller
-  import Poison
   alias Templater
 
   def render(conn, %{"template" => template, "data" => data}) do 
