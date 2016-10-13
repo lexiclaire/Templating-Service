@@ -7,7 +7,7 @@ defmodule Service.TemplaterControllerTest do
 	end
 
 	test "POST to /api/render, this time with data", %{conn: conn} do
-		conn = post conn, "/api/render", [template: "Hello <%= data[\"name\"] %>", data: %{"name" => "Jasper"}]
+		conn = post conn, "/api/render", [template: "Hello <%= map[\"name\"] %>", data: %{"name" => "Jasper"}]
 		assert json_response(conn, 200) =~ "Hello Jasper"
 	end
 end
