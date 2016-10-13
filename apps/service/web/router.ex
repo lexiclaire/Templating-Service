@@ -19,7 +19,7 @@ defmodule Service.Router do
     get "/", PageController, :index
   end
 
-  scope "/api", Sevice do
+  scope "/api", Service do
     pipe_through :api
 
     post "/render", TemplaterController, :render  

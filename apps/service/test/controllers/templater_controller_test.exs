@@ -1,13 +1,8 @@
 defmodule Service.TemplaterControllerTest do
-	use ExUnit.Case
+	use Service.ConnCase
 
-	require EEx
-
-  test "When I give my app data and a template string it accepts it and renders a completed template string" do
-    
-    inputData = %{:name => "Jasper", :age => 8}
-  	inputTemplate = "Hello <%= @name %>, you're <%= @age %>!"
-
-    assert "Hello Jasper, you're 8!" == "?"
-  end
+	test "POST /api/render", %{conn: conn} do
+		conn = post conn, "/api/render", [template: "Hello", data: %{}]
+		assert json_response(conn, 200) =~ "Hello"
+	end
 end

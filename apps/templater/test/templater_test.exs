@@ -8,6 +8,6 @@ defmodule TemplaterTest do
   	inputData = %{:name => "Jasper", :age => 8}
   	inputTemplate = "Hello <%= @name %>, you're <%= @age %>!"
 
-    assert "Hello Jasper, you're 8!" == Templater.render(inputData, inputTemplate)
+    assert "Hello Jasper, you're 8!" == Templater.render(inputTemplate, inputData)
   end
 end
