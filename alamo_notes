@@ -1,0 +1,4 @@
+aka apps:create templater -o test -s gwp-dev
+# https://templater-gwp-dev.alamoapp.octanner.io/
+# ac40aee1a2717b8b13beecce6cbcfce03df94190
+aka builds:auto -r https://github.com/lexiclaire/Templating-Service -b master --username lexiclaire --token ac40aee1a2717b8b13beecce6cbcfce03df94190 -a templater-gwp-dev
