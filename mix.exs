@@ -8,6 +8,10 @@ defmodule TemplateService.Mixfile do
      deps: deps]
   end
 
+  def application do
+    [applications: [:maru]]
+  end
+
   # Dependencies can be Hex packages:
   #
   #   {:mydep, "~> 0.3.0"}
@@ -21,6 +25,6 @@ defmodule TemplateService.Mixfile do
   # Dependencies listed here are available only for this project
   # and cannot be accessed from applications inside the apps folder
   defp deps do
-    [{:httpoison, "~> 0.9.0"}]
+    [{:maru, "~> 0.10"}]
   end
 end

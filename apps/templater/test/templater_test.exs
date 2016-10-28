@@ -11,3 +11,4 @@ defmodule TemplaterTest do
     assert "Hello Jasper, you're 8!" == Templater.render(inputTemplate, inputData)
   end
 end
+
