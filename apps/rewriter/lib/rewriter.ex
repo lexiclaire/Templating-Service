@@ -1,7 +1,11 @@
 defmodule Rewriter do
 
-	def link_rewrite(template, replacement) do
-		Regex.replace(~r/href="/, template, replacement)
+	def href_rewrite(document) do
+		String.replace(document, "href=\"", "href=\"" <> Application.get_env(:rewriter, :tracker))
 	end	
+
+	def src_rewrite(document) do
+		String.replace(document, "src=\"", "src=\"" <> Application.get_env(:rewriter, :tracker))
+	end
 
 end

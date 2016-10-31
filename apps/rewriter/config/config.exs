@@ -28,3 +28,6 @@ use Mix.Config
 # here (which is why it is important to import them last).
 #
 #     import_config "#{Mix.env}.exs"
+
+config :rewriter, tracker: (System.get_env("TRACKER") || "https://trackme.please/?redirect=")
+

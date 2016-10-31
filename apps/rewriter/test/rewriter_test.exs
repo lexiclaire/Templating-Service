@@ -2,10 +2,22 @@ defmodule RewriterTest do
   use ExUnit.Case
   doctest Rewriter
 
-  test "I can identify links in a template string and insert a tracker address" do
-  	templateSample = ~s(href="https://a.co/test.ext?a=1&b")
-  	replacementSample = ~s(href="https://tracker_address)
+  test "I can identify href attributes in a rendered document and insert a tracker address" do
+  	documentSample = ~s(Corned beef filet mignon <a href="https://en.wikipedia.org/wiki/Kielbasa">kielbasa</a> <img src="https://en.wikipedia.org/wiki/Kielbasa#/media/File:Kielbasa.jpg" /> shank tongue pork loin, porchetta brisket hamburger biltong landjaeger pastrami leberkas bresaola.)
 
-    assert Rewriter.link_rewrite(templateSample, replacementSample) == ~s(href="https://tracker_address"https://a.co/test.ext?a=1&b")
+  	rewrittenHref = ~s(Corned beef filet mignon <a href="#{ Application.get_env(:rewriter, :tracker) }https://en.wikipedia.org/wiki/Kielbasa">kielbasa</a> <img src="https://en.wikipedia.org/wiki/Kielbasa#/media/File:Kielbasa.jpg" /> shank tongue pork loin, porchetta brisket hamburger biltong landjaeger pastrami leberkas bresaola.)	
+  	rewrittenSrc = ~s(Corned beef filet mignon <a href="https://en.wikipedia.org/wiki/Kielbasa">kielbasa</a> <img src="#{ Application.get_env(:rewriter, :tracker) }https://en.wikipedia.org/wiki/Kielbasa#/media/File:Kielbasa.jpg" /> shank tongue pork loin, porchetta brisket hamburger biltong landjaeger pastrami leberkas bresaola.)
+
+  	rewrittenHrefAndSrc = ~s(Corned beef filet mignon <a href="#{ Application.get_env(:rewriter, :tracker) }https://en.wikipedia.org/wiki/Kielbasa">kielbasa</a> <img src="#{ Application.get_env(:rewriter, :tracker) }https://en.wikipedia.org/wiki/Kielbasa#/media/File:Kielbasa.jpg" /> shank tongue pork loin, porchetta brisket hamburger biltong landjaeger pastrami leberkas bresaola.)
+
+    assert Rewriter.href_rewrite(documentSample) == rewrittenHref
+
+    assert Rewriter.src_rewrite(documentSample) == rewrittenSrc
+
+    assert Rewriter.href_rewrite(documentSample) |> Rewriter.src_rewrite == rewrittenHrefAndSrc
+
+    assert Rewriter.src_rewrite(documentSample) |> Rewriter.href_rewrite == rewrittenHrefAndSrc
+    
   end
+
 end
