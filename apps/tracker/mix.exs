@@ -21,7 +21,7 @@ defmodule Tracker.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {Tracker, []},
-     applications: [:phoenix, :phoenix_pubsub, :cowboy, :logger, :gettext]]
+     applications: [:phoenix, :phoenix_pubsub, :cowboy, :logger, :gettext, :httpoison]]
   end
 
   # Specifies which paths to compile per environment.
@@ -35,6 +35,10 @@ defmodule Tracker.Mixfile do
     [{:phoenix, "~> 1.2.1"},
      {:phoenix_pubsub, "~> 1.0"},
      {:gettext, "~> 0.11"},
-     {:cowboy, "~> 1.0"}]
+     {:cowboy, "~> 1.0"},
+     {:uri, "~> 0.1.0"},
+     {:httpoison, "~> 0.10.0"},
+     {:poison, "~> 2.0"}
+    ]
   end
 end

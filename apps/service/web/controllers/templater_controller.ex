@@ -1,6 +1,6 @@
 defmodule Service.TemplaterController do
-	require Logger
   use Service.Web, :controller
+  require Logger
   alias Templater
 
   def render(conn, %{"template" => template, "data" => data}) do 

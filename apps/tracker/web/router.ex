@@ -5,9 +5,12 @@ defmodule Tracker.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", Tracker do
+  scope "/tracker", Tracker do
     pipe_through :api
+
+    get "/:redirect", TrackerController, :tracker
+    post "/event", TrackerController, :event
   end
+    
 end
 
-# How to add the route(tracker address) that I need and be able to get variables out of that route. 
